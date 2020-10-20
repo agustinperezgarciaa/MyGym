@@ -1,0 +1,110 @@
+<div>
+  <div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+    <form name="vm.userForm" ng-submit="vm.signup(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="firstName">Nombre</label>
+          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.credentials.firstName" placeholder="nombre" required autofocus>
+          <div ng-messages="vm.userForm.firstName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">El nombre es requerido.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="lastName">Apellido</label>
+          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.credentials.lastName" placeholder="apellido" required>
+          <div ng-messages="vm.userForm.lastName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">El apellido es requerido.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" ng-model="vm.credentials.email" placeholder="Email" lowercase required>
+          <div ng-messages="vm.userForm.email.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">El Email es requerido.</p>
+            <p class="help-block error-text" ng-message="email">La direccion de Email es invalida.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="dni">DNI</label>
+          <input type="text" id="dni" name="dni" class="form-control" ng-model="vm.credentials.dni" ng-pattern="vm.dniRegex" placeholder="dni" lowercase required>
+          <div ng-messages="vm.userForm.dni.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">El DNI es requerido.</p>
+            <p class="help-block error-text" ng-message="pattern">El numero de documento no es correcto, por favor ingrese un numero de documento valido</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="phone">Telefono</label>
+          <input type="text" id="phone" name="phone" class="form-control" ng-model="vm.credentials.phone" placeholder="telefono" size= lowercase ng-pattern="vm.phoneRegex">
+          <div ng-messages="vm.userForm.phone.$error" role="alert">
+            <p class="help-block error-text" ng-message="pattern">El numero de telefono ingresado no es valido. Ej: 035815505394 , 155234234</p>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="birDate">Fecha de Nacimiento</label>
+          <input type="date" id="dateBir" name="birDate" class="form-control" ng-model="vm.credentials.birDate" size= lowercase required>
+          <div ng-messages="vm.userForm.birDate.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">La Fecha de Nacimiento es requerida.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="gender">Sexo</label></br>
+          <form action="">
+            <input type="radio" id="genderM" name="gender" ng-model="vm.credentials.gender" value="hombre" required>Hombre<br>
+             <input type="radio" id="genderF" name="gender" ng-model="vm.credentials.gender" value="mujer" required>Mujer<br>
+          </form>
+          <div ng-messages="vm.userForm.gender.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">El sexo es requerido.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="roles">Rol</label>
+          <select name="roles" id="roles" name="roles" class="form-control" ng-model="vm.credentials.roles" size= lowercase required>
+            <option value="">--- Seleccionar ---</option>
+            <option value="admin">Admin</option>
+            <option value="user">Empleado</option>
+            <option value="client">Cliente</option>
+          </select>
+          <div ng-messages="vm.userForm.roles.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Al menos un rol es requerido.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="username">Usuario</label>
+          <input type="text" id="username" name="username" class="form-control" ng-model="vm.credentials.username" ng-pattern="vm.usernameRegex" placeholder="usuario" lowercase required>
+          <div ng-messages="vm.userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">El usuario es requerido.</p>
+            <p class="help-block error-text" ng-message="pattern">Ingrese un usuario valido: 3+ caracteres, no caracteres especiales, sin puntos consecutivos, que no empiece ni termine con punto, letras de la a-z y numeros de 0-9.</p>
+          </div>
+        </div>    
+        <div class="form-group" show-errors>
+          <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" class="form-control" ng-model="vm.credentials.password" placeholder="contraseña" uib-popover="{{vm.getPopoverMsg()}}" popover-trigger="outsideClick" password-validator required>
+          <div ng-messages="vm.userForm.password.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">La contraseña es requerida.</p>
+            <div ng-repeat="passwordError in passwordErrors">
+              <p class="help-block error-text" ng-show="vm.userForm.password.$error.requirements">{{passwordError}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="discipline">Diciplina</label>
+          <select name="discipline" id="discipline" name="discipline" class="form-control" ng-model="vm.credentials.discipline" size= lowercase required>
+            <option value="">--- Seleccionar ---</option>
+            <option ng-repeat="disc in vm.disciplines" value="{{disc._id}}">{{disc.title}}</option>
+          </select>
+          <div ng-messages="vm.userForm.discipline.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">La disciplina es requerida.</p>
+          </div>
+        </div>
+        <div class="form-group" ng-show="!vm.userForm.password.$error.required">
+          <label>Password Requirements</label>
+          <uib-progressbar value="requirementsProgress" type="{{requirementsColor}}"><span style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></uib-progressbar>
+        </div>
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary">Registrarse</button>
+          &nbsp; o&nbsp;
+          <a ui-sref="authentication.signin" class="show-signup">Ingresar</a>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

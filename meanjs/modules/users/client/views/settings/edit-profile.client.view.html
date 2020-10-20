@@ -1,0 +1,75 @@
+  <section class="row">
+  <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
+    <form name="vm.userForm" ng-submit="vm.updateUserProfile(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="firstName">Nombre</label>
+          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.user.firstName" placeholder="nombre" required autofocus>
+          <div ng-messages="vm.userForm.firstName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">First name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="lastName">Apellido</label>
+          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.user.lastName" placeholder="apellido" required>
+          <div ng-messages="vm.userForm.lastName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Last name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" ng-model="vm.user.email" placeholder="email" lowercase required>
+          <div ng-messages="vm.userForm.email.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Email address is required.</p>
+            <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="username">Usuario</label>
+          <input type="text" id="username" name="username" class="form-control" ng-model="vm.user.username" placeholder="usuario" lowercase required>
+          <div ng-messages="vm.userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Username is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="dni">DNI</label>
+          <input type="text" id="dni" name="dni" class="form-control" ng-model="vm.user.dni" ng-pattern="vm.dniRegex" placeholder="dni" lowercase required>
+          <div ng-messages="vm.userForm.dni.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">El DNI es requerido.</p>
+            <p class="help-block error-text" ng-message="pattern">El numero de documento no es correcto, por favor ingrese un numero de documento valido</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="Telefono">Telefono</label>
+          <input type="text" id="phone" name="phone" class="form-control" ng-model="vm.user.phone" placeholder="telefono" size= lowercase>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="Direccion">Direccion</label>
+          <input type="text" id="adress" name="adress" class="form-control" ng-model="vm.user.adress" placeholder="direccion" size= lowercase>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="birDate">Fecha de Nacimiento</label>
+          <input type="date" id="dateBir" name="birDate" class="form-control" ng-model="vm.user.birDate" size= lowercase
+          required>
+          <!--value="{{vm.user.birDate | date: 'yyyy-MM-dd'}}"-->
+          <div ng-messages="vm.userForm.birDate.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">La Fecha de Nacimiento es requerida.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="gender">Sexo</label></br>
+          <form action="">
+            <input type="radio" id="genderM" name="gender" ng-model="vm.user.gender" value="hombre" required>Hombre<br>
+             <input type="radio" id="genderF" name="gender" ng-model="vm.user.gender" value="mujer" required>Mujer<br>
+          </form>
+          <div ng-messages="vm.userForm.gender.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">El sexo es requerido.</p>
+          </div>
+        </div>   
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary">Actualizar</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

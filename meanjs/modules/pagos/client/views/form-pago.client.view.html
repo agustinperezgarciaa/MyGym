@@ -1,0 +1,40 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.pago._id ? 'Editar Pago' : 'Nuevo Pago'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.pagoForm" class="form-horizontal" ng-submit="vm.save(vm.form.pagoForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Titulo</label>
+          <input name="name" type="text" ng-model="vm.pago.name" id="name" class="form-control" placeholder="titulo" required>
+          <div ng-messages="vm.form.pagoForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Un titulo es requerido</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Monto</label>
+          <input name="price" type="text" ng-model="vm.pago.price" id="price" class="form-control" placeholder="monto" required ng-pattern="vm.priceRegex">
+          <div ng-messages="vm.form.pagoForm.price.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">El precio es requerido.</p>
+            <p class="help-block error-text" ng-message="pattern">Solo se aceptan numeros.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Descripción</label>
+          <textarea name="description" type="text" ng-model="vm.pago.description" id="description" cols="30" rows="10" class="form-control" placeholder="descripcion" required></textarea>
+          <div ng-messages="vm.form.pagoForm.description.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Una descripción es requerida</p>
+          </div>
+        </div>
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary">{{vm.pago._id ? 'Actualizar Pago' : 'Crear'}}</button>
+          <button type="button" onclick="history.back()" class="btn btn-primary">Cancelar</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

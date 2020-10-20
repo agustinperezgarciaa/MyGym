@@ -1,0 +1,40 @@
+<div>
+    <div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+    <form name="vm.userForm" ng-submit="vm.signin(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
+      <fieldset>
+        <div class="row" style="margin-bottom: 10%">
+          <div>
+            <img alt="logo" class="img-responsive text-center" src="/modules/core/client/img/brand/gymTrainingLogo.png"/>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <uib-alert type="danger" ng-show="vm.error" class="text-center text-danger">
+            <span ng-bind="vm.error"></span>
+          </uib-alert>
+          <label for="usernameOrEmail">Usuario o Email</label>
+          <input type="text" id="usernameOrEmail" name="usernameOrEmail" class="form-control" ng-model="vm.credentials.usernameOrEmail" placeholder="Usuario o Email" required autofocus>
+          <div ng-messages="vm.userForm.usernameOrEmail.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Usuario o Email es requerido.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" name="password" class="form-control" ng-model="vm.credentials.password" placeholder="Contraseña" required>
+          <div ng-messages="vm.userForm.password.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Contraseña es requerida.</p>
+          </div>
+        </div>
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary">Ingresar</button>
+          <!--&nbsp; o&nbsp;
+          <div class="text-center forgot-password">
+            <a ui-sref="password.forgot">Forgot your password?</a>
+          </div>
+          <a ui-sref="authentication.signup">Registrarse</a>-->
+        </div>
+         <div class="text-center form-group">
+        <br />
+      </fieldset>
+    </form>
+  </div>
+</div>

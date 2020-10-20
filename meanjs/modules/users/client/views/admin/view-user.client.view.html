@@ -1,0 +1,82 @@
+<section>
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 ng-bind="vm.user.displayName"></h1>
+      </div>
+      <div class="pull-right" style="margin-top: 1.5em">
+        <a class="btn btn-primary" ui-sref="admin.user-edit({userId: vm.user._id})">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vm.remove()" ng-if="!vm.isContextUserSelf()">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-16">
+      <div class="row" ng-if="(vm.user.roles == 'admin') || (vm.user.roles == 'user')">
+        <div class="col-md-3"><strong>Usuario</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.username"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><strong>Nombre</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.firstName"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><strong>Apellido</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.lastName"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><strong>Email</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.email"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><strong>Creado</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.created | date:'dd/MM/yyyy'"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><strong>Direccion</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.adress"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><strong>DNI</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.dni"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><strong>Telefono</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.phone"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><strong>Fecha de Nacimiento</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.birDate | date:'dd/MM/yyyy'">
+      </div>
+      </div>
+        <div class="row">
+        <div class="col-md-3"><strong>Sexo</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.gender"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><strong>Rol</strong></div>
+        <div class="col-md-6" ng-bind="vm.user.roles.show"></div>
+      </div>
+      <div class="row" ng-if="(vm.user.status.includes('Activo')) || (vm.user.status.includes('newActivo'))">
+        <div class="col-md-3"><strong>Estado</strong></div>
+        <div class="col-md-6">Activo (desde el {{vm.user.activityDate | date: 'dd/MM/yyyy'}})</div>
+      </div>
+      <div class="row" ng-if="(vm.user.status === 'Inactivo')">
+        <div class="col-md-3"><strong>Estado</strong></div>
+        <div class="col-md-6">Inactivo por {{vm.user.userWhoInactivated}} (desde el {{vm.user.inactiveDate | date: 'dd/MM/yyyy'}})
+        </div>
+      </div>
+      <div class="row" ng-if="(vm.user.status === 'Inactivo')" >
+        <div class="col-md-3"><strong>Motivo de baja</strong></div>
+        <div class="col-md-6" ng-if="(vm.user.statusDescription)" ng-bind="vm.user.statusDescription"></div>
+        <div class="col-md-6" ng-if="!(vm.user.statusDescription)">----</div>
+      </div>
+      <hr/>        
+    </div>
+  </div>
+</section>

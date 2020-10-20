@@ -1,0 +1,34 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.article._id ? 'Editar Disciplina ' : 'Nueva Disciplina'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.articleForm" class="form-horizontal" ng-submit="vm.save(vm.form.articleForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Disciplina</label>
+          <input name="title" type="text" ng-model="vm.article.title" id="title" class="form-control" placeholder="nombre" required autofocus>
+          <div ng-messages="vm.form.articleForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">El nombre de la disciplina es requerido.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="price">Precio mensual</label>
+          <input name="price" type="text" ng-model="vm.article.price" id="price" class="form-control" placeholder="precio" required ng-pattern="vm.priceRegex">
+          <div ng-messages="vm.form.articleForm.price.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">El nombre de la disciplina es requerido.</p>
+            <p class="help-block error-text" ng-message="pattern">Ingrese un precio valido</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="content">Descripcion</label>
+          <textarea name="content" data-ng-model="vm.article.content" id="content" class="form-control" cols="30" rows="10" placeholder="descripcion"></textarea>
+        </div>
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary">{{vm.article._id ? 'Actualizar disciplina' : 'Crear'}}</button>
+          <button type="button" onclick="history.back()" class="btn btn-primary">Cancelar</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

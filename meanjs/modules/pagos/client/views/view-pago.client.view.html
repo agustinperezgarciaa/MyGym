@@ -1,0 +1,38 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.pago.name"></h1>
+    <div class="pull-right" style="margin-top: -3em" ng-show="vm.pago.isCurrentUserOwner || vm.isAdmin()">
+      <a class="btn btn-primary" ui-sref="pagosedit({ pagoId: vm.pago._id })">
+        <i class="glyphicon glyphicon-edit"></i>
+      </a>
+      <a class="btn btn-primary" ng-click="vm.remove()">
+        <i class="glyphicon glyphicon-trash"></i>
+      </a>
+    </div>
+  </div>
+    <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-3"><strong>Monto</strong></div>
+        <div class="col-md-6">$ {{vm.pago.price}}</div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Descripción</strong></div>
+        <div class="col-md-6" ng-bind="vm.pago.description"></div>
+      </div>
+      <hr/>
+    </div>
+  </div>
+  <small>
+    <em class="text-muted">
+      Creado el
+      <span ng-bind="vm.pago.created | date:'dd/MM/yyyy' "></span>
+      por
+      <span ng-if="vm.pago.user"
+            ng-bind="vm.pago.user.displayName"></span>
+      <span ng-if="!vm.pago.user">Usuario Eliminado</span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="vm.pago.content"></p>
+</section>
