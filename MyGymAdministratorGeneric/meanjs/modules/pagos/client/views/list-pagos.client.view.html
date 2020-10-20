@@ -1,0 +1,41 @@
+<section>
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-4" style="width: 25.333333%;">
+        <h2>Historial de Pagos</h2>
+      </div>
+      <div class="col-md-1" style="margin-top: 1.5em; width: 5%;">
+        <h4>Desde:</h4>
+      </div>
+      <div class="col-md-2" style="margin-top: 1.5em; width:15.666667%">
+        <input class="form-control" type="date" ng-model="vm.search" placeholder="Buscar" ng-change="vm.figureOutItemsToDisplay()" />
+      </div>
+      <div class="col-md-1" style="margin-top: 1.5em; width: 4.6%;">
+        <h4>Hasta:</h4>
+      </div>
+      <div class="col-md-2" style="margin-top: 1.5em; width:15.666667%">
+        <input class="form-control" type="date" ng-model="vm.searchTo" placeholder="Buscar" ng-change="vm.figureOutItemsToDisplay()" />
+      </div>
+      <div class="col-md-1" style="margin-top: 1.5em; width: 4.6%;">
+        <h4>Total:&nbsp${{vm.totalAmount}}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="pago in vm.pagedItems" ui-sref="pagosview({ pagoId: pago._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Pago realizado el
+        <span ng-bind="pago.created | date:'dd/MM/yyyy'"></span>
+        por
+        <span ng-if="pago.user" ng-bind="pago.user.displayName"></span>
+        <span ng-if="!pago.user">Usuario eliminado</span>
+      </small>
+      <h4 class="list-group-item-heading"></h4>
+      <h3 class="list-group-item-heading"><small>$ {{pago.price}} por el concepto de {{pago.name}}</small></h3>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.pagos.$resolved && !vm.pagos.length">
+    No hay pagos registrados, desea <a ui-sref="pagoscreate">crear uno?</a>?
+  </div>
+  <uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength" ng-model="vm.currentPage" ng-change="vm.pageChanged()"></uib-pagination>
+</section>

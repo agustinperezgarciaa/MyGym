@@ -1,0 +1,42 @@
+<section>
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-4">
+        <h1>Usuarios por cobrar</h1>
+      </div>
+      <div class="col-md-3" style="margin-top: 2em">
+        <input class="form-control" type="text" ng-model="vm.search" placeholder="Buscar" ng-change="vm.figureOutItemsToDisplay()" />
+      </div>
+      <div class="col-md-3" style="margin-top: 2em; display: flex; align-items: center;">
+        <h6>Solo usuarios vencidos</h6>
+        <input style="margin: 0; margin-left: 5px; " type="checkbox" ng-model="vm.vencido" placeholder="Buscar" ng-change="vm.figureOutItemsToDisplay()" />
+      </div>
+    </div>
+  </div>    
+  <div class="list-group">
+    <a ng-repeat="user in vm.pagedItems" class="list-group-item">
+      <p class="list-group-item-text pull-right small">
+      <button class="btn btn-success" ng-click="vm.changeCobro(user._id)">Cobrar</button>
+      </p>
+      <h4 class="list-group-item-heading" ng-bind="user.displayName"></h4>
+      <span ng-if="user.expiration">
+        <small ng-if="!user.isExpired" class="list-group-item-text">
+          Fecha de expiracion del utlimo pago: 
+          <span ng-bind="user.expiration | date:'dd/MM/yyyy'"></span>
+        </small>
+        <small ng-if="user.isExpired" class="list-group-item-text">
+          Fecha de expiracion del utlimo pago:  
+          <span ng-bind="user.expiration | date:'dd/MM/yyyy'"></span>
+          <b><FONT COLOR="red">(VENCIDO)</b>
+        </small>
+     </span>
+      <span ng-if="!user.expiration || user.expiration === null">
+        <small class="list-group-item-text">
+          <b>No se registra ningun pago.</b>
+        </small>
+     </span>
+    </a>
+  </div>
+
+  <uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength" ng-model="vm.currentPage" ng-change="vm.pageChanged()"></uib-pagination>
+</section>

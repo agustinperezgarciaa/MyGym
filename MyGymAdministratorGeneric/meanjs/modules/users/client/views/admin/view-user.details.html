@@ -1,0 +1,60 @@
+<section>
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 ng-bind="vm.user.displayName"></h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row" ng-if="!vm.user.isExpired && vm.user.expiration">
+          <div class="col-md-5" style="margin-top: 1.5em; width:29.666667%">
+              <strong> 
+                  <h3>Estado: <FONT COLOR="green">VIGENTE</FONT></h3>
+              </strong>              
+                <br> 
+              <strong> 
+                  <h3>Su cuota expira el: </h3>
+              </strong>
+          </div>
+        <div  class="col-md-5" style="margin-top: 6.3em; width:69.666667%">
+            <h1 ng-bind="(vm.user.expiration | date:'dd/MM/yyyy') + ' (faltan '+vm.user.expirationDate+' dias)'"></h1>
+        </div>
+      </div>    
+      <div class="row" ng-if="vm.user.isExpired && vm.user.expiration">
+          <div class="col-md-5" style="margin-top: 1.5em; width:29.666667%">
+              <strong> 
+                  <h3>Estado: <FONT COLOR="red">VENCIDO</FONT></h3>
+              </strong>  
+              <br> 
+              <strong> 
+                  <h3>Su cuota expiro el: </h3>
+              </strong>
+          </div>
+        <div  class="col-md-5" style="margin-top: 6.3em; width:69.666667%">
+            <h1 ng-bind="(vm.user.expiration | date:'dd/MM/yyyy') + ' (hace '+vm.user.expirationDate+' dias)'"></h1>
+        </div>
+      </div>    
+      <div class="row" ng-if="vm.user.isExpired && !vm.user.expiration">
+          <div class="col-md-5" style="margin-top: 1.5em; width:100%">
+              <strong> 
+                  <h3>Estado: <FONT COLOR="red">SIN REGISTRO</FONT></h3>
+              </strong>  
+              <br> 
+              <strong> 
+                  <h3>Usted no tiene registrado ningun pago.</h3>
+              </strong>
+          </div>
+      </div>    
+        <br></br>  
+        <br></br>        
+      <div class="text-center form-group">
+        <button autofocus ui-sref="home" class="btn btn-primary">Volver</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+

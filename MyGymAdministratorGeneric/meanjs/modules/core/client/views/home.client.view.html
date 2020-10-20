@@ -1,0 +1,23 @@
+<section>
+  <div class="jumbotron text-center">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+        <img alt="logo" class="img-responsive text-center" src="/modules/core/client/img/brand/tuLogoAqui.png" />
+      </div>
+    </div>
+    <br>    
+    <br>
+        <form name="vm.userForm" ng-submit="vm.searchUser(vm.userClient)" class="signin" novalidate autocomplete="off">
+      <fieldset>
+        <div class="form-group" align="center" show-errors>
+          <label for="dni">Ingrese su documento para consultar el estado de su cuenta</label>
+          <input type="text" id="dni" name="dni" class="form-control" style="width: 415px" ng-model="vm.credentials.dni" ng-pattern="vm.dniRegex" placeholder="dni" lowercase required autofocus>
+        </div>
+        <br>
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary">Consultar</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

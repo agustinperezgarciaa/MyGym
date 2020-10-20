@@ -1,0 +1,24 @@
+<section>
+  <div class="page-header">
+    <h1>Nuevo Cobro</h1>
+  </div>
+  <div class="col-md-12">
+    <div class="form-group">
+      <label class="control-label">Cliente: {{vm.cobro.displayName}}</label>
+    </div>
+    <div class="form-group">
+      <label class="control-label">DNI: {{vm.cobro.dni}}</label>
+    </div>
+    <div class="form-group" class="ng-hide" style="width: 500px">
+          <label for="discipline">Diciplina</label>
+          <select name="discipline" id="discipline" name="discipline" class="form-control" ng-model="vm.discipline._id" size= lowercase ng-required="vissibleClient">
+            <option ng-repeat="disc in vm.disciplines" value="{{disc._id}}">{{disc.title}}</option>
+          </select>
+    </div>
+    <div class="form-group">
+      <label class="control-label">Monto: $ {{vm.searchPrice(vm.discipline._id).price}}</label>
+    </div>
+    <button class="btn btn-danger" ui-sref="cobroscreate">Cancelar</button>
+    <button class="btn btn-success" ng-disabled="vm.searchPrice(vm.discipline._id).price==0" ng-click="vm.createCobro()">Cobrar</button>
+  </div>
+</section>

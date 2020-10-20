@@ -1,0 +1,50 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.article.title"></h1>
+    <div class="pull-right" style="margin-top: -3em">
+      <a class="btn btn-primary" data-ui-sref="admin.articles.edit({articleId: vm.article._id})">
+        <i class="glyphicon glyphicon-edit"></i>
+      </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+    </div>
+  </div>
+        <div class="row">
+          <div class="col-md-3"><strong>Monto mensual</strong></div>
+          <div class="col-md-6">$ {{vm.article.price}}</div>
+        </div>
+        <hr/>
+        <div class="row">
+          <div class="col-md-3"><strong>Descripción</strong></div>
+          <div class="col-md-6" ng-bind="vm.article.content"></div>
+        </div>
+        <hr/>
+        <div ng-if="vm.userSuscriber !== ''" class="form-group" class="ng-hide">
+          <label for="Clientes suscriptos">Clientes suscriptos</label>
+            <textarea readonly style="width: 370px; height: 300px;"  name="users" id="users" name="users" class="form-control" ng-model="vm.userSuscriber" size= lowercase >
+            </textarea>
+            <div class="col-md-6" ng-if="vm.userSuscriber === ''">Ninguno</div>
+        </div>
+        <div ng-if="vm.userSuscriber === ''" class="row">
+          <div class="col-md-3"><strong>Clientes suscriptos</strong></div>
+            <div class="col-md-6">Ninguno</div>
+        </div>
+        <hr/>
+        <div ng-if="vm.userSuscriber !== ''">
+          <div class="row" >
+            <div class="col-md-3"><strong>Cantidad suscriptos</strong></div>
+            <div class="col-md-6">{{vm.length}}</div>
+          </div>  
+          <hr/>
+        </div>
+    <small>
+    <em class="text-muted">
+      Creado el
+      <span ng-bind="vm.article.created | date:'dd/MM/yyyy'"></span>
+      por
+      <span ng-if="vm.article.user" ng-bind="vm.article.user.displayName"></span>
+      <span ng-if="!vm.article.user">Deleted User</span>
+    </em>
+  </small>
+</section>
